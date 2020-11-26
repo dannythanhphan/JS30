@@ -59,20 +59,30 @@
 
 <script>
   window.addEventListener('keydown', (e) => {
-    let arrayOfDivs = document.getElementsByTagName("div");
-    let arrayOfAudios = document.getElementsByTagName("audio");
-    let i = 0;
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keycode}"]`);
+
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play();
+    key.classList.add("playing");
+
+    // My solution
+    // let arrayOfDivs = document.getElementsByTagName("div");
+    // let arrayOfAudios = document.getElementsByTagName("audio");
+    // let i = 0;
     
-    for (const key of arrayOfDivs) {
-      if (Number(key.dataset.key) === e.keyCode) {
-        key.classList.add("playing");
-        arrayOfAudios[i - 1].play();
-        setTimeout(() => {
-          key.classList.remove("playing");
-        }, 100)
-      }
-      i++;
-    }
+    // for (const key of arrayOfDivs) {
+    //   if (Number(key.dataset.key) === e.keyCode) {
+    //     key.classList.add("playing");
+    //     arrayOfAudios[i - 1].currentTime = 0;
+    //     arrayOfAudios[i - 1].play();
+    //     setTimeout(() => {
+    //       key.classList.remove("playing");
+    //     }, 100)
+    //   }
+    //   i++;
+    // }
   });
 </script>
 
